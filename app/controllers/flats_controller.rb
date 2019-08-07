@@ -5,7 +5,11 @@ class FlatsController < ApplicationController
     @flats = Flat.all
   end
 
+  def show
+  end
+
   def new
+    @flat = Flat.new
   end
 
   def create
@@ -21,9 +25,16 @@ class FlatsController < ApplicationController
   end
 
   def update
+    if @flat.update(flat_params)
+      redirect_to flat_path(@flat)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @flat.destroy
+    redirect_to flats_path
   end
 
   private
@@ -33,6 +44,6 @@ class FlatsController < ApplicationController
   end
 
   def set_flat
-    @flat = Flat.new(params[:id])
+    @flat = Flat.find(params[:id])
   end
 end

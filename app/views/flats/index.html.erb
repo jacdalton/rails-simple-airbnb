@@ -1,6 +1,21 @@
-<h1>Flats</h1>
-<% @flats.each do |f| %>
-  <div class="flat-card">
-    <h2><%= f.name %></h2>
-  </div>
-<% end %>
+<div class="container">
+  <h1>Flats</h1>
+  <%= link_to "Add a flat", new_flat_path %>
+  <% @flats.each do |f| %>
+    <div class="row">
+      <div class="col-sm">
+        <div class="flat card">
+          <h5 class="card-title"><%= f.name %></h5>
+          <p class="card-text"><%= f.address %></p>
+          <div class="flat card-body">
+            <p><i class="fas fa-user-friends"></i> <%= f.number_of_guests %></p>
+            <p><i class="fas fa-dollar-sign"></i> <%= f.price_per_night %></p>
+          </div>
+          <div class="more-info">
+            <%= link_to "More info", flat_path(f) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
